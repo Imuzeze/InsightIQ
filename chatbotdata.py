@@ -151,7 +151,7 @@ with robot_image:
 
 with chats:
     user_message = chats.text_input('Hello there you can ask your questions: ')
-  def responder(user_input):
+    def responder(user_input):
         user_input_processed = preprocess_text(user_input)
         vectorized_user_input = tfidf_vectorizer.transform([user_input_processed])
         similarity_score = cosine_similarity(vectorized_user_input, corpus)
