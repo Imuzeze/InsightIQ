@@ -151,12 +151,13 @@ with robot_image:
 
 with chats:
     user_message = chats.text_input('Hello there you can ask your questions: ')
-    def responder(user_input):
+  def responder(user_input):
         user_input_processed = preprocess_text(user_input)
         vectorized_user_input = tfidf_vectorizer.transform([user_input_processed])
         similarity_score = cosine_similarity(vectorized_user_input, corpus)
-        argument_maximum = similarity_score.argmax()
-        print (data['Answer'].iloc[ argument_maximum])
+        argument_maximum = similarity_score.argmax(axis = 1)[0]
+        response = data['Answer'].iloc[ argument_maximum]
+        return response
 
 bot_greetings = ['Hello user, i am a creation of zeze the great...Ask your question',
              'How far wetin dey sup?',
